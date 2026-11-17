@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Prévia Plano Completo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;0,6..96,700;1,6..96,500&family=Figtree:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: uma coluna estreita como no celular. Mesmo visual nos 3 planos; muda só o que cada plano inclui. */
+:root {
+  --bg: #f7f0ea; --surface: #fffaf6; --ink: #2a1a1d; --muted: #74605f;
+  --berry: #7a1a2c; --berry-ink: #ffffff; --gold: #94703f; --line: #e8dbd2;
+  --mark-bg: #fff4c7; --mark-ink: #6b5200; --wa: #1f7a4d;
+  --bar-bg: #3a1219; --bar-ink: #f7f0ea;
+  --display: "Bodoni Moda", "Didot", Georgia, serif;
+  --body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #171012; --surface: #221719; --ink: #f5ebe6; --muted: #bba7a3;
+    --berry: #e48b9c; --berry-ink: #1b1013; --gold: #d9b483; --line: #3b2a2d;
+    --mark-bg: #4a3d12; --mark-ink: #ffe28a; --wa: #4cc58a;
+    --bar-bg: #2b1a1e; --bar-ink: #f3ecef; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #171012; --surface: #221719; --ink: #f5ebe6; --muted: #bba7a3;
+  --berry: #e48b9c; --berry-ink: #1b1013; --gold: #d9b483; --line: #3b2a2d;
+  --mark-bg: #4a3d12; --mark-ink: #ffe28a; --wa: #4cc58a;
+  --bar-bg: #2b1a1e; --bar-ink: #f3ecef; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 16px; line-height: 1.55; }
+.wrap { max-width: 560px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+h1, h2, h3 { font-family: var(--display); font-weight: 500; text-wrap: balance; margin: 0; line-height: 1.12; }
+p { margin: 0; }
+.eyebrow { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); font-weight: 600; }
+a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+/* faixa do plano (some quando ela clica em "ver como cliente") */
+.plan-bar { background: var(--bar-bg); color: var(--bar-ink); font-size: 14px; }
+.plan-bar .wrap { padding-block: 12px; display: grid; gap: 8px; }
+.plan-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+.plan-name { font-family: var(--display); font-size: 20px; }
+.plan-name small { font-family: var(--body); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; opacity: .75; margin-right: 6px; }
+.plan-bar button { font: inherit; font-size: 12px; background: transparent; color: inherit; border: 1px solid currentColor; border-radius: 999px; padding: 4px 12px; cursor: pointer; }
+.plan-bar details summary { cursor: pointer; font-weight: 600; font-size: 13px; }
+.plan-bar ul { margin: 8px 0 2px; padding-left: 18px; display: grid; gap: 3px; font-size: 14px; }
+.plan-bar li.no { opacity: .55; text-decoration: line-through; }
+.plan-bar .note { font-size: 12px; opacity: .75; }
+
+.mark { background: var(--mark-bg); color: var(--mark-ink); border-radius: 4px; padding: 0 5px; font-weight: 600; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+body.clean .mark { background: transparent; color: inherit; padding: 0; font-weight: inherit; }
+
+.hero { padding-block: 36px 28px; display: grid; gap: 18px; }
+.logo { width: 78px; height: 78px; border-radius: 50%; border: 1.5px solid var(--gold); object-fit: cover; background: #f3e9e1; }
+.hero h1 { font-size: clamp(32px, 8.5vw, 44px); }
+.hero h1 em { color: var(--berry); }
+.hero p.lead { color: var(--muted); font-size: 17px; max-width: 34ch; }
+.hero-photo { border-radius: 2px 120px 2px 2px; aspect-ratio: 4 / 5; }
+.hero .ctas { display: flex; gap: 10px; flex-wrap: wrap; }
+
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none; font-weight: 600; border-radius: 999px; padding: 13px 22px; font-size: 15px; }
+.btn-main { background: var(--berry); color: var(--berry-ink); }
+.btn-ghost { color: var(--berry); border: 1.5px solid var(--berry); padding: 11px 20px; }
+.btn-wa { background: transparent; color: var(--wa); border: 1.5px solid var(--wa); padding: 10px 18px; font-size: 14px; }
+.btn svg { width: 18px; height: 18px; flex: none; }
+
+section { padding-block: 32px; border-top: 1px solid var(--line); }
+.sec-head { display: grid; gap: 6px; margin-bottom: 22px; }
+.sec-head h2 { font-size: 30px; }
+
+/* tabela simples (Essencial) */
+.menu { list-style: none; margin: 0; padding: 0; display: grid; }
+.menu li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 12px; padding-block: 14px; border-bottom: 1px dashed var(--line); }
+.menu li:first-child { padding-top: 0; }
+.menu .n { font-weight: 600; font-size: 17px; }
+.menu .d { grid-column: 1 / -1; color: var(--muted); font-size: 14px; }
+.menu .p { font-family: var(--display); font-weight: 700; font-size: 19px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.menu .p small { font-family: var(--body); font-weight: 500; font-size: 11px; color: var(--muted); margin-right: 4px; text-transform: uppercase; letter-spacing: .08em; }
+.menu-cta { margin-top: 22px; }
+
+/* vitrine (Completo e Premium) */
+.services { display: grid; gap: 34px; }
+.service { display: grid; gap: 12px; }
+.service h3 { font-size: 25px; }
+.service .why { color: var(--muted); }
+.row { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding-top: 4px; }
+.price { font-variant-numeric: tabular-nums; display: grid; }
+.price small { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.price b { font-family: var(--display); font-size: 22px; font-weight: 700; }
+
+.ph { position: relative; aspect-ratio: 4 / 3; width: 100%; max-width: 100%; overflow: hidden; border-radius: 2px; background: var(--g, linear-gradient(160deg, #6b3a4c, #c79a7a)); }
+.ph::before { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(115deg, rgba(255,255,255,.07) 0 2px, transparent 2px 9px); }
+.ph span { position: absolute; left: 10px; bottom: 10px; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: #fff; background: rgba(0,0,0,.42); padding: 3px 8px; border-radius: 3px; }
+.ph img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+body.clean .ph span { display: none; }
+.ba .ph span { display: block; }
+
+/* categorias (Premium) */
+.tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 26px; }
+.tabs button { font: inherit; font-size: 14px; font-weight: 600; border: 1.5px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 999px; padding: 7px 14px; cursor: pointer; }
+.tabs button[aria-pressed="true"] { background: var(--berry); border-color: var(--berry); color: var(--berry-ink); }
+
+.steps { list-style: none; padding: 0; margin: 0; display: grid; gap: 14px; counter-reset: s; }
+.steps li { display: grid; grid-template-columns: 36px 1fr; gap: 12px; align-items: start; counter-increment: s; }
+.steps li::before { content: counter(s); font-family: var(--display); font-size: 22px; color: var(--berry); line-height: 1.2; }
+.steps b { display: block; }
+.steps p { color: var(--muted); font-size: 15px; }
+
+.combos { display: grid; gap: 14px; }
+.combo { background: var(--surface); border: 1px solid var(--line); padding: 18px; display: grid; gap: 8px; }
+.combo h3 { font-size: 21px; }
+.combo .inc { color: var(--muted); font-size: 15px; }
+.combo .save { font-size: 13px; color: var(--berry); font-weight: 600; }
+
+.ba { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.ba .ph { aspect-ratio: 3 / 4; }
+.ba-cap { color: var(--muted); font-size: 14px; margin-top: 8px; }
+.gal { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; margin-bottom: 18px; }
+.gal a { display: block; aspect-ratio: 1; overflow: hidden; }
+.gal img { width: 100%; height: 100%; object-fit: cover; display: block; max-width: 100%; }
+.video { display: grid; justify-items: center; gap: 10px; }
+.video video { width: 100%; max-width: 360px; max-height: 640px; border-radius: 2px; background: #000; display: block; }
+
+.quotes { display: grid; gap: 16px; }
+blockquote { margin: 0; padding-left: 14px; border-left: 2px solid var(--gold); font-family: var(--display); font-style: italic; font-size: 18px; }
+blockquote cite { display: block; font-family: var(--body); font-style: normal; font-size: 13px; color: var(--muted); margin-top: 6px; }
+
+.faq { display: grid; gap: 2px; }
+.faq details { border-bottom: 1px solid var(--line); padding-block: 12px; }
+.faq summary { cursor: pointer; font-weight: 600; }
+.faq p { color: var(--muted); margin-top: 6px; font-size: 15px; }
+
+.about { display: grid; gap: 16px; }
+.about .ph { aspect-ratio: 1; border-radius: 50%; width: 140px; }
+.ph img { object-position: center 30%; }
+/* fotos reais aparecem no formato original (sem cortar); só as muito altas ganham um limite */
+.hero-photo:has(img), .service .ph:has(img), #cursos .ph:has(img) { aspect-ratio: auto !important; }
+.hero-photo:has(img) img, .service .ph:has(img) img, #cursos .ph:has(img) img { position: relative; inset: auto; height: auto; max-height: 640px; display: block; }
+.about > .ph:first-child img { object-position: center 22%; }
+
+.info { display: grid; gap: 14px; }
+.info dl { margin: 0; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 8px 16px; }
+.info dt { color: var(--muted); font-size: 13px; text-transform: uppercase; letter-spacing: .08em; padding-top: 2px; }
+.info dd { margin: 0; min-width: 0; overflow-wrap: anywhere; }
+.info .ctas { display: flex; gap: 10px; flex-wrap: wrap; }
+
+footer { padding-block: 28px 90px; text-align: center; color: var(--muted); font-size: 13px; border-top: 1px solid var(--line); }
+
+.float { position: fixed; right: calc(16px + env(safe-area-inset-right, 0px)); bottom: calc(16px + env(safe-area-inset-bottom, 0px)); background: var(--wa); color: #fff; border-radius: 999px; padding: 12px 16px; display: flex; gap: 8px; align-items: center; text-decoration: none; font-weight: 600; font-size: 14px; box-shadow: 0 6px 20px rgba(0,0,0,.22); z-index: 5; }
+.float svg { width: 20px; height: 20px; }
+@media (prefers-reduced-motion: no-preference) { .btn, .float { transition: transform .15s ease; } .btn:active, .float:active { transform: scale(.97); } }
+</style>
+
+<div class="plan-bar">
+  <div class="wrap">
+    <div class="plan-top">
+      <span class="plan-name"><small>Prévia</small><span id="plan-name"></span><span id="plan-price"></span></span>
+      <a id="plan-compare" style="color:inherit;font-size:13px">Comparar os 3 planos</a>
+      <button type="button" id="toggle-marks" aria-pressed="true">Ver o que é exemplo</button>
+    </div>
+    <div class="plan-detail">
+      <details>
+        <summary>O que este plano inclui</summary>
+        <ul id="plan-list"></ul>
+      </details>
+      <p class="note">Fotos e serviços tirados do seu Instagram. Endereço, horários, valores e depoimentos são exemplos. Toque em "Ver o que é exemplo" pra ver marcado em amarelo.</p>
+    </div>
+  </div>
+</div>
+<main>
+<div class="wrap">
+  <header class="hero">
+    <img class="logo" src="fotos/logo.jpg" alt="Logo Débora Coura">
+    <p class="eyebrow"><span id="salon-name"></span></p>
+    <h1>Não é apenas cuidar de cabelos. É <em>cuidar de pessoas</em>.</h1>
+    <p class="lead">Corte, mechas, cor, lisoterapia e terapia capilar, com um olhar que começa pela saúde dos seus fios.</p>
+    <div class="ctas"><a class="btn btn-main" href="#servicos">Ver serviços e valores</a></div>
+    <div class="ph hero-photo" style="--g: linear-gradient(170deg, #3e2531 0%, #8a4a5f 45%, #d8b08c 100%)"><img src="fotos/capa.jpg" alt="Débora Coura no salão"></div>
+  </header>
+</div>
+
+<section id="servicos">
+  <div class="wrap">
+    <div class="sec-head"><p class="eyebrow">Serviços</p><h2>Escolha o seu momento</h2></div>
+    <div class="services" id="services"></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head"><p class="eyebrow">Do Instagram</p><h2>Alguns dos meus trabalhos</h2></div>
+    <div class="gal">
+      <a href="https://www.instagram.com/deboracoura_/" target="_blank" rel="noopener"><img src="fotos/galeria1.jpg" alt="Loiro longo com ondas" loading="lazy"></a>
+      <a href="https://www.instagram.com/deboracoura_/" target="_blank" rel="noopener"><img src="fotos/galeria2.jpg" alt="Loiro médio ondulado" loading="lazy"></a>
+      <a href="https://www.instagram.com/deboracoura_/" target="_blank" rel="noopener"><img src="fotos/galeria3.jpg" alt="Cabelo acobreado com ondas" loading="lazy"></a>
+      <a href="https://www.instagram.com/deboracoura_/" target="_blank" rel="noopener"><img src="fotos/galeria4.jpg" alt="Penteado com ondas e trança" loading="lazy"></a>
+      <a href="https://www.instagram.com/deboracoura_/" target="_blank" rel="noopener"><img src="fotos/galeria5.jpg" alt="Coque cacheado" loading="lazy"></a>
+      <a href="https://www.instagram.com/deboracoura_/" target="_blank" rel="noopener"><img src="fotos/galeria6.jpg" alt="Corte curto cacheado" loading="lazy"></a>
+    </div>
+    <a class="btn btn-ghost" href="https://www.instagram.com/deboracoura_/" target="_blank" rel="noopener">Ver mais no Instagram</a>
+  </div>
+</section>
+
+<section>
+  <div class="wrap about">
+    <div class="ph" style="--g: linear-gradient(160deg, #5c2f42, #c08f8f)"><img src="fotos/dona.jpg" alt="Débora Coura"></div>
+    <div class="sec-head" style="margin:0">
+      <p class="eyebrow">Prazer</p>
+      <h2>Sou a <span class="mark" id="owner-name">[seu nome]</span></h2>
+    </div>
+    <p>Sou cabeleireira e professora. Antes da estética, olho pra saúde do fio e do couro cabeludo, porque cabelo bonito começa por aí. Trabalho com cabelo há <span class="mark">15 anos</span> e, além de atender no Espaço, dou cursos pra outros profissionais. Aqui você conversa comigo antes, entende o que vai ser feito e sai sabendo cuidar do resultado em casa.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap info">
+    <div class="sec-head" style="margin:0">
+      <p class="eyebrow">Onde e quando</p>
+      <h2>Venha me visitar</h2>
+    </div>
+    <dl>
+      <dt>Endereço</dt><dd><span class="mark">Rua das Acácias, 250 · Centro</span></dd>
+      <dt>Horários</dt><dd><span class="mark">Terça a sábado, das 9h às 19h</span></dd>
+      <dt>WhatsApp</dt><dd id="wa-text"></dd>
+      <dt>Instagram</dt><dd id="ig-text"></dd>
+    </dl>
+    <div class="ctas"><a class="btn btn-main" id="cta-final" target="_blank" rel="noopener">Agendar pelo WhatsApp</a></div>
+  </div>
+</section>
+
+<footer><div class="wrap"><span id="footer-name"></span> · site feito por Juan</div></footer>
+</main>
+<a class="float" id="float-wa" target="_blank" rel="noopener" aria-label="Agendar pelo WhatsApp"></a>
+<script>
+/* ===== Dados do site: troque aqui ===== */
+const SALAO = {
+  nome: "Espaço Débora Coura", // nome que aparece no topo e no rodapé
+  dona: "Débora",           // usado em "Sou a ..." e na mensagem do WhatsApp
+  whatsapp: "553184391225", // só números com DDI e DDD
+  whatsappTexto: "(31) 8439-1225",
+  instagram: "@deboracoura_",
+  precosReais: false // true quando os valores dos serviços forem os dela (tira o amarelo)
+};
+
+/* Plano mostrado na faixa de cima. valor: deixe "" até o Juan confirmar o preço (ex.: "400"). */
+const PLANO = {
+  nome: "Plano Completo",
+  valor: "",
+  comparar: "index.html",
+  inclui: [
+    "Tudo do Essencial",
+    "Vitrine: cada serviço com foto, frase e valor",
+    "Botão de WhatsApp em cada serviço, com mensagem já escrita",
+    "Seção sobre você com sua foto",
+    "Galeria com seus trabalhos do Instagram",
+    "Botão fixo de agendar"
+],
+  naoInclui: [
+    "Categorias e combos",
+    "Antes e depois, depoimentos e dúvidas frequentes"
+]
+};
+
+// preco: só o número. aPartir: true mostra "a partir de". foto: "" = provisória, ou o arquivo, ex.: "fotos/coloracao.jpg".
+const SERVICOS = [
+  { nome: "Corte feminino", frase: "Do longo texturizado ao curto moderno, pensado pro seu rosto e pra sua rotina.", preco: "120", aPartir: false, foto: "fotos/corte.jpg", g: "linear-gradient(160deg, #2e2a2c, #5d4b52 60%, #9c8590)" },
+  { nome: "Mechas e loiro", frase: "O loiro dos sonhos com tom, iluminação e dimensão, sem abrir mão da saúde do fio.", preco: "450", aPartir: true, foto: "fotos/mechas.jpg", g: "linear-gradient(160deg, #6d4b2f, #c9a06c 60%, #f0dcb4)" },
+  { nome: "Coloração e efeito gloss", frase: "Cor renovada e brilho espelhado, com raiz camuflada e zero danos.", preco: "200", aPartir: true, foto: "fotos/coloracao.jpg", g: "linear-gradient(160deg, #3b1f2b, #7a2f45 55%, #b8566b)" },
+  { nome: "Lisoterapia", frase: "Trata e alinha os fios, com mais movimento, leveza e brilho.", preco: "300", aPartir: true, foto: "fotos/lisoterapia.jpg", g: "linear-gradient(160deg, #23343a, #4f7270 60%, #a7c3b8)" },
+  { nome: "Terapia capilar com ozônio", frase: "Cuida do couro cabeludo e devolve força e vitalidade aos fios.", preco: "180", aPartir: false, foto: "fotos/terapia.jpg", g: "linear-gradient(160deg, #23343a, #4f7270 60%, #a7c3b8)" }
+];
+/* ===== fim dos dados ===== */
+
+const WA_ICON = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.5-.3Z"/></svg>';
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const mark = (val, ph) => val ? esc(val) : `<span class="mark">${esc(ph)}</span>`;
+const quem = () => SALAO.dona ? `, ${SALAO.dona}` : "";
+const $ = id => document.getElementById(id);
+function waLink(msg) {
+  const base = SALAO.whatsapp ? `https://wa.me/${SALAO.whatsapp}` : "https://wa.me/";
+  return `${base}?text=${encodeURIComponent(msg)}`;
+}
+const msgServico = nome => `Oi${quem()}! Vi seu site e quero saber mais sobre ${nome}. Tem horário disponível?`;
+// preços de exemplo aparecem marcados em amarelo
+const valor = p => p ? `<span class="${SALAO.precosReais ? "" : "mark"}">R$ ${esc(p)}</span>` : 'Sob consulta';
+function foto(f, g, label) {
+  return `<div class="ph" style="--g:${g}">${f ? `<img src="${esc(f)}" alt="${esc(label)}" loading="lazy">` : `<span>Foto provisória · ${esc(label)}</span>`}</div>`;
+}
+const precoBloco = (p, aPartir) => `<span class="price"><small>${aPartir ? "A partir de" : "Valor"}</small><b>${valor(p)}</b></span>`;
+function servicoCard(s) {
+  return `<article class="service">
+    ${foto(s.foto, s.g, s.nome)}
+    <h3>${esc(s.nome)}</h3>
+    <p class="why">${esc(s.frase)}</p>
+    <div class="row">${precoBloco(s.preco, s.aPartir)}
+      <a class="btn btn-wa" href="${waLink(msgServico(s.nome))}" target="_blank" rel="noopener">${WA_ICON}Quero saber mais</a>
+    </div></article>`;
+}
+
+// faixa do plano
+$("plan-name").textContent = PLANO.nome;
+$("plan-price").innerHTML = PLANO.valor ? ` · R$ ${esc(PLANO.valor)}` : "";
+$("plan-list").innerHTML = PLANO.inclui.map(i => `<li>${esc(i)}</li>`).join("") + (PLANO.naoInclui || []).map(i => `<li class="no">${esc(i)}</li>`).join("");
+
+// dados do salão
+for (const id of ["salon-name", "footer-name"]) $(id).innerHTML = mark(SALAO.nome, "[Nome do salão]");
+if (SALAO.dona && $("owner-name")) $("owner-name").outerHTML = esc(SALAO.dona);
+$("wa-text").innerHTML = SALAO.whatsapp ? esc(SALAO.whatsappTexto || SALAO.whatsapp) : '<span class="mark">[número do WhatsApp]</span>';
+const geral = `Oi${quem()}! Vi seu site e quero agendar um horário.`;
+$("ig-text").innerHTML = SALAO.instagram ? `<a href="https://www.instagram.com/${esc(SALAO.instagram.replace("@", ""))}/" target="_blank" rel="noopener" style="color:inherit">${esc(SALAO.instagram)}</a>` : '<span class="mark">[@ do Instagram]</span>';
+if (PLANO.comparar) $("plan-compare").href = PLANO.comparar; else $("plan-compare").hidden = true;
+$("cta-final").href = waLink(geral);
+$("float-wa").href = waLink(geral);
+$("float-wa").innerHTML = WA_ICON + "Agendar";
+
+document.body.classList.add("clean");
+const t = $("toggle-marks");
+t.addEventListener("click", () => {
+  const on = document.body.classList.toggle("clean");
+  t.setAttribute("aria-pressed", on);
+  t.textContent = on ? "Ver o que é exemplo" : "Esconder marcações";
+});
+
+$("services").innerHTML = SERVICOS.map(servicoCard).join("");
+</script>
